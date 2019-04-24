@@ -22,8 +22,10 @@ def main():
         screen.fill((0, 0, 0))
         pygame.draw.circle(screen, (255, 0, 0), (ball_x, ball_y), ball_radius, 0)
         pygame.display.update()
+        
         ball_x += ball_dir_x
         ball_y += ball_dir_y
+
         if ball_x + ball_radius > canvas_width:
             ball_dir_x = -ball_dir_x
         if ball_y + ball_radius > canvas_height:

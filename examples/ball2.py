@@ -4,16 +4,18 @@ class Ball:
     def __init__(self, x, y, speed, radius):
         self.x = x
         self.y = y
+        self.direction = 'left'
         self.speed = speed
         self.radius = radius
 
     def update(self, width, height):
         self.x += self.speed
-        self.y += self.speed
-        if self.x > width:
-            self.x = 0
-        if self.y > height:
-            self.y = 0
+        #self.y += self.speed_y
+        if self.x - self.radius > width:
+            self.speed_x = 0
+        if self.x - self.radius < 0:
+            self.speed_x = 5
+
 
     def display(self, screen):
         pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), self.radius)

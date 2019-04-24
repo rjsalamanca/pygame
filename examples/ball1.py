@@ -1,24 +1,35 @@
 import pygame
+import random
 
 class Ball:
-    def __init__(self, x, y):
+    def __init__(self, x, y, speed, radius):
         self.x = x
         self.y = y
-        self.speed_x = 5
-        self.speed_y = 5
-        self.radius = 50
+        self.speed = speed
+        self.radius = radius
 
     def update(self, width, height):
-        self.x += self.speed_x
-        self.y += self.speed_y
-        if self.x + self.radius > width:
-            self.speed_x = -5
-        if self.y + self.radius > height:
-            self.speed_y = -5
-        if self.x - self.radius < 0:
-            self.speed_x = 5
-        if self.y - self.radius < 0:
-            self.speed_y = 5
+        randomRadius = random.randint(1,200)
+        randomSpeed = random.randint(1,15)
+        randomY = random.randint(1,height)
+        self.x += self.speed
+
+        if self.x - self.radius > width:
+            self.speed = -randomSpeed
+            print('first print rad: ' , self.radius)
+            self.radius = randomRadius
+            print('rand: ' ,randomRadius)
+            print('second print rad: ' , self.radius)
+            self.y = randomY
+
+        if self.x + self.radius < 0:
+            self.speed = randomSpeed
+            print('first print rad Less : ' , self.radius)
+            self.radius = randomRadius
+            print('rand: ' ,randomRadius)
+            print('second print radLess: ' , self.radius)
+            self.y = randomY
+
 
     def render(self, screen):
         pygame.draw.circle(screen, (255, 0, 0), (self.x, self.y), self.radius)
@@ -32,12 +43,11 @@ def main():
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption('Simple Example')
 
-
     # Put Game Initialization Code Here
     ball_list = [
-        Ball(50, 50),
-        Ball(200, 50),
-        Ball(50, 200),
+        Ball(50, 50, 1,1)
+
+
     ]
     stop_game = False
     while not stop_game:
